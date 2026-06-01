@@ -20,15 +20,7 @@ namespace QuizApp.Forms
 
         private void playButton_Click(object sender, EventArgs e)
         {
-
-            //MessageBox.Show("Button clicked");
-
             string name = nameTextBox.Text;
-
-            UserService userService = new UserService();
-            int userId = userService.AddUser(name);
-
-            //MessageBox.Show("Added with Id: " + userId);
 
             if (name == "")
             {
@@ -36,14 +28,21 @@ namespace QuizApp.Forms
                 return;
             }
 
-            int questionCount = 5;
+            int questionsCount = 5;
 
             if (radioButton10.Checked)
             {
-                questionCount = 10;
+                questionsCount = 10;
             }
-            //MessageBox.Show("User Added. Id: " + userId +
-                            //"\nNumber of Questions: " + questionCount);
+
+            UserService userService = new UserService();
+            int userId = userService.AddUser(name);
+
+            GameSessionService gameSessionService = new GameSessionService();
+            int sessionId = gameSessionService.StartSession(userId, questionsCount);
+
+            QuizForm quizForm = new QuizForm(sessionId, questionsCount);
+            quizForm.Show();
         }
     }
 }
