@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuizApp.Services;
-
-internal class FileService
+namespace QuizApp.Services
 {
-
+    internal class UserService
+    {
+    }
 }
