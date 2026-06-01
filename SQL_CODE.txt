@@ -1,0 +1,52 @@
+SELECT COUNT(*) FROM [User]
+SELECT Name, Rank FROM [User];
+SELECT DISTINCT Rank FROM [User];
+SELECT * FROM [User] WHERE Rank > 3.0;
+SELECT * FROM GameSession ORDER BY Score DESC; 
+SELECT * FROM GameSession WHERE Score > 20 AND QuestionsCount = 5;
+SELECT * FROM Questions WHERE Point = 1 OR Point = 2;
+SELECT * FROM Questions WHERE NOT Point = 5; 
+SELECT * FROM GameSession WHERE SessionEnd IS NULL;
+INSERT INTO [User] (Name, RegistrationDate, Rank) VALUES ('Gela', GETDATE(), 4.0);
+UPDATE [User] SET Rank = 5.0 WHERE Id = 1;
+DELETE FROM GameSession WHERE Score = 1;
+SELECT
+    COUNT(*) AS TotalGames,
+    AVG(Score) AS AverageScore,
+    MAX(Score) AS HighestScore
+FROM GameSession;
+SELECT * FROM [User] WHERE Name LIKE 'G%';
+SELECT * FROM Questions WHERE QuestionText NOT LIKE '%?%';
+SELECT * FROM [User] WHERE Rank IN (1.0, 2.0, 3.0, 4.0, 5.0);
+SELECT * FROM [User] WHERE Rank BETWEEN 2.5 AND 4.5;
+SELECT
+    U.Name,
+    G.Score,
+    G.QuestionsCount,
+    G.SessionStart
+FROM GameSession G
+INNER JOIN [User] U
+    ON G.UserId = U.Id;
+SELECT
+    U.Name,
+    G.Score,
+    G.SessionStart
+FROM [User] U
+LEFT JOIN GameSession G
+    ON U.Id = G.UserId;
+SELECT
+    U.Name,
+    COUNT(G.Id) AS GamesPlayed,
+    SUM(G.Score) AS TotalScore
+FROM [User] U
+LEFT JOIN GameSession G
+    ON U.Id = G.UserId
+GROUP BY U.Name;
+SELECT
+    U.Name,
+    COUNT(G.Id) AS GamesPlayed
+FROM [User] U
+INNER JOIN GameSession G
+    ON U.Id = G.UserId
+GROUP BY U.Name
+HAVING COUNT(G.Id) > 1;
