@@ -21,14 +21,14 @@ namespace QuizApp.Forms
         private void playButton_Click(object sender, EventArgs e)
         {
 
-            MessageBox.Show("Button clicked");
+            //MessageBox.Show("Button clicked");
 
             string name = nameTextBox.Text;
 
             UserService userService = new UserService();
             int userId = userService.AddUser(name);
 
-            MessageBox.Show("Added with Id: " + userId);
+            //MessageBox.Show("Added with Id: " + userId);
 
             if (name == "")
             {
@@ -42,8 +42,8 @@ namespace QuizApp.Forms
             {
                 questionCount = 10;
             }
-            MessageBox.Show("User Added. Id: " + userId +
-                            "\nNumber of Questions: " + questionCount);
+            //MessageBox.Show("User Added. Id: " + userId +
+                            //"\nNumber of Questions: " + questionCount);
         }
     }
 }
