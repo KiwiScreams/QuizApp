@@ -24,4 +24,22 @@ public class UserService
         connection.Close();
         return id;
     }
+    public void UpdateRank(int userId, decimal rank)
+    {
+        using SqlConnection connection = Database.GetConnection();
+
+        string query = @"
+        UPDATE [User]
+        SET Rank = @Rank
+        WHERE Id = @UserId
+    ";
+
+        using SqlCommand command = new SqlCommand(query, connection);
+
+        command.Parameters.AddWithValue("@Rank", rank);
+        command.Parameters.AddWithValue("@UserId", userId);
+
+        connection.Open();
+        command.ExecuteNonQuery();
+    }
 }

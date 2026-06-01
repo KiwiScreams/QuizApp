@@ -41,7 +41,7 @@ namespace QuizApp.Forms
             GameSessionService gameSessionService = new GameSessionService();
             int sessionId = gameSessionService.StartSession(userId, questionsCount);
 
-            QuizForm quizForm = new QuizForm(sessionId, questionsCount);
+            QuizForm quizForm = new QuizForm(userId, sessionId, questionsCount);
             quizForm.Show();
         }
     }

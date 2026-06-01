@@ -19,17 +19,22 @@ namespace QuizApp.Forms
         private int currentQuestionIndex = 0;
         private int score = 0;
         private int sessionId;
+        private int userId;
+        private int questionsCount;
 
-        public QuizForm(int sessionId, int questionsCount)
+        public QuizForm(int userId, int sessionId, int questionsCount)
         {
             InitializeComponent();
 
+            this.userId = userId;
             this.sessionId = sessionId;
+            this.questionsCount = questionsCount;
 
             QuestionService questionService = new QuestionService();
             questions = questionService.GetQuestions(questionsCount);
 
             ShowQuestion();
+
         }
         private void ShowQuestion()
         {
@@ -50,11 +55,15 @@ namespace QuizApp.Forms
         private void FinishQuiz()
         {
             GameSessionService gameSessionService = new GameSessionService();
-
             gameSessionService.FinishSession(sessionId, score);
 
-            MessageBox.Show(
-                $"Quiz finished!\nScore: {score}");
+            decimal rank = (decimal)score / questionsCount * 5;
+
+            UserService userService = new UserService();
+            userService.UpdateRank(userId, rank);
+
+            ResultForm resultForm = new ResultForm(score, questionsCount);
+            resultForm.Show();
 
             Close();
         }
