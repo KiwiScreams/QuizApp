@@ -10,12 +10,8 @@ internal static class Program
     {
         ApplicationConfiguration.Initialize();
 
-        DBTest.TestConnection();
-
         QuestionService questionService = new QuestionService();
         var questions = questionService.GetQuestions(5);
-
-        MessageBox.Show("question: " + questions.Count);
 
         Application.Run(new MainForm());
     }
