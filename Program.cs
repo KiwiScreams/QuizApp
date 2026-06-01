@@ -1,5 +1,5 @@
+using QuizApp.Data;
 using QuizApp.Forms;
-
 namespace QuizApp;
 
 internal static class Program
@@ -8,6 +8,7 @@ internal static class Program
     static void Main()
     {
         ApplicationConfiguration.Initialize();
+        DBTest.TestConnection();
         Application.Run(new MainForm());
     }
 }
