@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuizApp.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,30 @@ namespace QuizApp.Forms
         public AdminForm()
         {
             InitializeComponent();
+        }
+
+        private void playButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text files (*.txt)|*.txt";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                QuestionService.ExportToTxt(saveFileDialog.FileName);
+                MessageBox.Show("Downloaded");
+            }
+        }
+
+        private void uploadBTN_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text files (*.txt)|*.txt";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                QuestionService.ImportFromTxt(openFileDialog.FileName);
+                MessageBox.Show("Uploaded");
+            }
         }
     }
 }

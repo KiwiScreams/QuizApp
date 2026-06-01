@@ -36,6 +36,7 @@
             groupBox = new GroupBox();
             radioButton10 = new RadioButton();
             radioButton5 = new RadioButton();
+            adminBtn = new Button();
             groupBox.SuspendLayout();
             SuspendLayout();
             // 
@@ -55,7 +56,7 @@
             playButton.BackColor = SystemColors.HotTrack;
             playButton.Font = new Font("Showcard Gothic", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             playButton.ForeColor = SystemColors.ButtonFace;
-            playButton.Location = new Point(243, 331);
+            playButton.Location = new Point(243, 330);
             playButton.Name = "playButton";
             playButton.Size = new Size(350, 80);
             playButton.TabIndex = 1;
@@ -126,11 +127,26 @@
             radioButton5.Text = "5 Questions";
             radioButton5.UseVisualStyleBackColor = true;
             // 
+            // adminBtn
+            // 
+            adminBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            adminBtn.BackColor = SystemColors.GradientActiveCaption;
+            adminBtn.Font = new Font("Rockwell", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            adminBtn.ForeColor = SystemColors.ActiveCaptionText;
+            adminBtn.Location = new Point(443, 416);
+            adminBtn.Name = "adminBtn";
+            adminBtn.Size = new Size(150, 50);
+            adminBtn.TabIndex = 8;
+            adminBtn.Text = "ADMIN PAGE";
+            adminBtn.UseVisualStyleBackColor = false;
+            adminBtn.Click += adminBtn_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 482);
+            Controls.Add(adminBtn);
             Controls.Add(groupBox);
             Controls.Add(label2);
             Controls.Add(Heading);
@@ -155,5 +171,6 @@
         private GroupBox groupBox;
         private RadioButton radioButton10;
         private RadioButton radioButton5;
+        private Button adminBtn;
     }
 }
